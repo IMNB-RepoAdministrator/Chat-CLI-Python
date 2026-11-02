@@ -17,8 +17,8 @@
 
 ## AI Usage
 
-[Disclose your AI usage.]
+\<Disclose your AI usage.>
 
 ## Comment
 
-[This is optional. Additional comment for this pull request.]
+\<This is optional. Additional comment for this pull request.>
