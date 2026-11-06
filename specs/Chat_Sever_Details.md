@@ -26,9 +26,14 @@ There are 2 mains component:
   - Able to discover server through broadcast.
   - Able to use command to use application and interact with other clients. Require command:
     - **/list**: Listing available clients in the current server.
-    - **/chat \<name|id number>**: Establish a chat session to other client.
+    - **/list-sent**: List of files that already sent from you. 
+    - **/chat \<username|user id number>**: Establish a chat session to other client.
       - **/send \<file|folder>**: Send file or folder to the other client.
-    - **/send \<name|id number> \<file|folder>**: Send file or folder to other without establishing chat session.
+    - **/switch \<roomname| id number>**: Switch to specific chat session.
+    - **/send \<username|user id number> \<file|folder>**: Send file or folder to other without establishing chat session.
+    - **/send \<file|folder>**: Send file or folder to everyone.
+    - **/list-recv**: List of files that sent to you.
+    - **/recv**: Receive all files that sent to you.
     - **/leavechat**: Leave chat session.
     - **/leave**: Leave the server.
     - **/setstatus \<status_option>**: Set status from given status:

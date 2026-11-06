@@ -1,0 +1,19 @@
+[project]
+    name = "Chat-CLI-Python"
+    maintainers = [
+        {name = "IMNB", email = ""},
+        {name = "Hoang Nguyen", email = ""},
+        {name = "tehphc", email = ""}
+    ]
+    
+    requires-python = ">= 3.8"
+    version = "1.0"
+    dependencies = ["pyyaml"]
+
+    readme = "README.md"
+    description = "Simple chat cli application with file sending application and bare minimum security."
+    license-files = ["LICEN[CS]E", "LICENSE"]
+    classifiers = [
+        "Development status :: 3 - Alpha"
+    ]
+

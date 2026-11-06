@@ -1,0 +1,1 @@
+SERVER_CONFIG_PATH = "config/serverconfig.yaml"

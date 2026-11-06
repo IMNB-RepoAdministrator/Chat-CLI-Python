@@ -1,0 +1,11 @@
+config: shared # This is use for denoting which kind of config, not actually using in application.
+
+# Broadcast
+broadcast-server-ip: "255.255.255.255"
+broadcast-server-port: 28010
+
+# Optimization
+timeout-length: 5 # secs
+
+## Size
+packet-size: 4096 # bytes

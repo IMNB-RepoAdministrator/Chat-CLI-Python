@@ -1,0 +1,14 @@
+config: client # This is use for denoting which kind of config, not actually using in application.
+
+# Client config
+
+## Security
+encryption-file: true
+encryption-chat: true
+
+## Optimization
+compression: true
+
+## Debug
+debug: true
+logging: true

@@ -1,0 +1,23 @@
+config: server # This is use for denoting which kind of config, not actually using in application.
+
+# Server config
+
+## Security
+allow-authentication: true
+allow-encrytion-file: true
+allow-encryption-chat: true
+allow-broadcast-found: true
+
+## Optimization
+allow-compression: true
+
+## Debugging
+allow-server-debug-msg: true
+allow-server-logging: true
+
+## Application
+tcp-server-ip: "0.0.0.0"
+tcp-server-port: 28009
+
+udp-server-port: "0.0.0.0"
+udp-server-port: 28008
