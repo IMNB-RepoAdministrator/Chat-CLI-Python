@@ -1,7 +1,9 @@
 config: shared # This is use for denoting which kind of config, not actually using in application.
 
+# Specs
+version: "1.0.0"
+
 # Broadcast
-broadcast-server-ip: "255.255.255.255"
 broadcast-server-port: 28010
 
 # Optimization
