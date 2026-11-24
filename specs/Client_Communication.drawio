@@ -1,0 +1,46 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="AlzL-zsQmqyB2lF7WPNi">
+    <mxGraphModel dx="1030" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="0JJhYAyp446EXq8pg34R-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Server" vertex="1">
+          <mxGeometry height="60" width="120" x="300" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="0JJhYAyp446EXq8pg34R-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Client 1" vertex="1">
+          <mxGeometry height="60" width="120" x="30" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="0JJhYAyp446EXq8pg34R-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Client 2" vertex="1">
+          <mxGeometry height="60" width="120" x="580" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="0JJhYAyp446EXq8pg34R-8" edge="1" parent="1" source="0JJhYAyp446EXq8pg34R-2" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="0JJhYAyp446EXq8pg34R-1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="330" y="350" as="sourcePoint" />
+            <mxPoint x="380" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0JJhYAyp446EXq8pg34R-9" edge="1" parent="1" source="0JJhYAyp446EXq8pg34R-1" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="0JJhYAyp446EXq8pg34R-3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="330" y="350" as="sourcePoint" />
+            <mxPoint x="380" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0JJhYAyp446EXq8pg34R-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=-30;" value="Send" vertex="1">
+          <mxGeometry height="30" width="60" x="180" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="0JJhYAyp446EXq8pg34R-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=30;" value="Send" vertex="1">
+          <mxGeometry height="30" width="60" x="490" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="0JJhYAyp446EXq8pg34R-12" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=-30;" value="Recv" vertex="1">
+          <mxGeometry height="30" width="60" x="210" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="0JJhYAyp446EXq8pg34R-13" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=30;" value="Recv" vertex="1">
+          <mxGeometry height="30" width="60" x="460.00076211353314" y="280.00038105676657" as="geometry" />
+        </mxCell>
+        <mxCell id="0JJhYAyp446EXq8pg34R-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Server act as proxy for 2 client to communicate with each other" vertex="1">
+          <mxGeometry height="30" width="220" x="250" y="390" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
