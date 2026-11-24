@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import socket
 
 from model.model_socket import socket_property

@@ -16,7 +16,7 @@ class Infinite_execute_Thread(threading.Thread):
     
     def __init__(self, func, *a, **ka):
         
-        if not hasattr(func, "__call__"):
+        if not callable(func):
             raise TypeError("Function doesn't have `__call__` attribute.")
         
         super().__init__(daemon=True)

@@ -42,7 +42,7 @@ def timeout(time : float, action=None, *action_args, **action_kwargs):
             if new_thread.is_running():
                 new_thread.terminate()
                 
-                if hasattr(action, "__call__"):
+                if callable(action):
                     return action(*action_args, **action_kwargs) #type: ignore
                 
                 else:
