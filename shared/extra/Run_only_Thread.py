@@ -1,6 +1,8 @@
 import threading
-from async_raises import async_raises
+
 from _exception import Terminated
+from async_raises import async_raises
+
 
 class Run_only_Thread(threading.Thread):
     """
@@ -13,7 +15,7 @@ class Run_only_Thread(threading.Thread):
         if not hasattr(func, "__call__"):
             raise TypeError("Function doesn't have `__call__` attribute.")
         
-        super(Run_only_Thread, self).__init__(daemon=True)
+        super().__init__(daemon=True)
         
         self.__is_running = False
         self.__func  = func

@@ -8,9 +8,6 @@ allow-encrytion-file: true
 allow-encryption-chat: true
 allow-broadcast-found: true
 
-## Optimization
-allow-compression: true
-
 ## Debugging
 allow-server-debug-msg: true
 allow-server-logging: true

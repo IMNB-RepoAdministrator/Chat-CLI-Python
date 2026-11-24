@@ -7,6 +7,6 @@
 """
 
 # Changing namespace
-from sock import create_socket as sock_create
-from model import model_socket as shared_model
 from config import file_path as get_path
+from model import model_socket as shared_model
+from sock import create_socket as sock_create

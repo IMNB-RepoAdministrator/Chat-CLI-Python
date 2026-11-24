@@ -1,5 +1,6 @@
-import ctypes # C api spooky
+import ctypes  # C api spooky
 import inspect
+
 
 def async_raises(tid, exctype): # Calling C api spooky
     """

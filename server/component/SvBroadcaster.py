@@ -1,11 +1,9 @@
-from shared import sock_create
-from shared import get_path
-from shared.extra.timeout import timeout
-from shared.extra.placeholder import placeholer
-
-import pathlib
 import socket
+
 import yaml
+
+from shared import get_path, sock_create
+from shared.extra.timeout import timeout
 
 SHARED_CONFIG_FILE = get_path.get_shared_path()
 ASK_REQUEST = f"Who is Chat-CLI server? {SHARED_CONFIG_FILE["version"]}".encode()
@@ -13,7 +11,7 @@ SVRANS_REQUEST = f"I am Chat-CLI server. {SHARED_CONFIG_FILE["version"]}".encode
 CLI_ACK = f"Chat-CLI Client Acknowledge. {SHARED_CONFIG_FILE["version"]}".encode()
 TIMEOUT = SHARED_CONFIG_FILE["timeout-length"]
 
-class SvBroadcaster(object):
+class SvBroadcaster:
     """
     **Description**:
         Instantiate a **Broadcaster** object and automatically bind itself to 0.0.0.0.

@@ -1,8 +1,10 @@
-import threading
 import queue
-from shared.extra.Run_only_Thread import Run_only_Thread
+import threading
 from functools import wraps
-    
+
+from shared.extra.Run_only_Thread import Run_only_Thread
+
+
 def timeout(time : float, action=None, *action_args, **action_kwargs):
     """
     Set timneout for functions.

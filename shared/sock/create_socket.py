@@ -1,5 +1,7 @@
-from model.model_socket import socket_property
 import socket
+
+from model.model_socket import socket_property
+
 
 def create_UDPsocket(addr : tuple[str, int]):
     """

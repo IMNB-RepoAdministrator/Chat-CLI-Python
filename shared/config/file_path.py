@@ -1,5 +1,6 @@
-import yaml
 import pathlib
+
+import yaml
 
 SHARED_ABSOLUTE_PATH = "/".join(str(pathlib.Path(__file__).resolve()).split("/")[:-3]) + "/"
 

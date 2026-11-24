@@ -1,6 +1,8 @@
 import threading
-from async_raises import async_raises
+
 from _exception import Terminated
+from async_raises import async_raises
+
 
 class Infinite_execute_Thread(threading.Thread):
     """
@@ -17,7 +19,7 @@ class Infinite_execute_Thread(threading.Thread):
         if not hasattr(func, "__call__"):
             raise TypeError("Function doesn't have `__call__` attribute.")
         
-        super(Infinite_execute_Thread, self).__init__(daemon=True)
+        super().__init__(daemon=True)
         
         self.__is_shutdown = threading.Event()
         self.__is_running = False
