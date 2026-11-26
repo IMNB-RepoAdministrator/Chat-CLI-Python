@@ -1,10 +1,10 @@
 import threading
 
-from _exception import Terminated
-from async_raises import async_raises
+from ._exception import Terminated
+from .async_raises import async_raises
 
 
-class Infinite_execute_Thread(threading.Thread):
+class infinite_execute_thread(threading.Thread):
     """
     Executing function in another thread with extra functionality:
     
@@ -61,8 +61,11 @@ class Infinite_execute_Thread(threading.Thread):
         
         self.__is_running = True
         
-        while not self.__is_shutdown.is_set():
-            self.__func(*self.__args, **self.__kargs,)
+        try:
+            while not self.__is_shutdown.is_set():
+                self.__func(*self.__args, **self.__kargs,)
+        except Terminated:
+            pass
         
         self.__is_running = False
 
@@ -72,11 +75,14 @@ class Infinite_execute_Thread(threading.Thread):
         """
         Force terminate thread.
         
-        <b>NOTE</b>: This will forcefully terminate thread so no return.
+        <b>NOTE 1</b>: This will forcefully terminate thread so no return `join()`.
+        
+        <b>NOTE 2</b>: Using `join()` will still wait for the function until it joinable.
         """
         
         async_raises(self._get_tid(), Terminated)
-        
+        self.__is_running = False
+
     def is_running(self):
         """
         Return boolean value if the thread is still running:
@@ -91,6 +97,9 @@ class Infinite_execute_Thread(threading.Thread):
         """
         Stop the program in thread. This does not force the program to stop immediately.
         To stop immediately, use `terminate()`.
+        
+        **NOTE**: Use this instead of `is_alive()` for better reliability especially `terminate()` due to `is_alive()`
+        still return `True` after `terminate()`.
         """
         
         self.__is_shutdown.set()

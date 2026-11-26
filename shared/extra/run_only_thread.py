@@ -1,10 +1,10 @@
 import threading
 
-from _exception import Terminated
-from async_raises import async_raises
+from ._exception import Terminated
+from .async_raises import async_raises
 
 
-class Run_only_Thread(threading.Thread):
+class run_only_thread(threading.Thread):
     """
     Create thread that can only stopped by either function finish 
     executing or terminate manually through `terminate()` method.
@@ -16,7 +16,7 @@ class Run_only_Thread(threading.Thread):
             raise TypeError("Function doesn't have `__call__` attribute.")
         
         super().__init__(daemon=True)
-        
+                
         self.__is_running = False
         self.__func  = func
         self.__args  = a
@@ -56,8 +56,12 @@ class Run_only_Thread(threading.Thread):
         
         self.__is_running = True
         
-        self.__func(*self.__args, **self.__kargs,)
+        try:
+            self.__func(*self.__args, **self.__kargs,)
         
+        except Terminated:
+            pass
+
         self.__is_running = False
 
     # Public method
@@ -66,10 +70,13 @@ class Run_only_Thread(threading.Thread):
         """
         Force terminate thread.
         
-        <b>NOTE</b>: This will forcefully terminate thread so no return.
+        <b>NOTE 1</b>: This will forcefully terminate thread so no return so no `join()`.
+        
+        <b>NOTE 2</b>: Using `join()` will still wait for the function until it joinable.
         """
         
         async_raises(self._get_tid(), Terminated)
+        self.__is_running = False
         
     def is_running(self):
         """
@@ -77,6 +84,9 @@ class Run_only_Thread(threading.Thread):
         
         - 1: is running
         - 0: is not running
+        
+        **NOTE**: Use this instead of `is_alive()` for better reliability especially `terminate()` due to `is_alive()`
+        still return `True` after `terminate()`.
         """
         
         return self.__is_running

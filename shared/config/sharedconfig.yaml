@@ -4,10 +4,12 @@ config: shared # This is use for denoting which kind of config, not actually usi
 version: "1.0.0"
 
 # Broadcast
-broadcast-server-port: 28010
+broadcast-addr: "255.255.255.255" 
+broadcast-port: 28010
 
 # Optimization
 timeout-length: 5 # secs
+repeating-rate: 0.2 #secs
 
 ## Size
 packet-size: 4096 # bytes

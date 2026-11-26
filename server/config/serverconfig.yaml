@@ -18,3 +18,7 @@ tcp-server-port: 28009
 
 udp-server-port: "0.0.0.0"
 udp-server-port: 28008
+
+## Optimization
+limit-reconnecting: 100
+reconnecting-refresh: 30 # seconds

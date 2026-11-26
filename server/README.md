@@ -11,5 +11,5 @@ After found then client and server will use this address to initialize handshake
 
 Default config:
 
-- Broadcast address: `0.0.0.0`
+- Broadcast address: `255.255.255.255`
 - Broadcast port: `28010`

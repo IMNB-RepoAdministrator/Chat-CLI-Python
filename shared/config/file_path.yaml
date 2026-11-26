@@ -1,3 +1,3 @@
-shared-config-path: "shared/config/sharedconfig.yaml"
-server-config-path: "server/config/serverconfig.yaml"
-client-config-path: "client/config/clientconfig.yaml"
+shared-config-path: "/shared/config/sharedconfig.yaml"
+server-config-path: "/server/config/serverconfig.yaml"
+client-config-path: "/client/config/clientconfig.yaml"
