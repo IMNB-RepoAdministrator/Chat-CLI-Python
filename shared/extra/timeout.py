@@ -2,8 +2,8 @@ import queue
 import threading
 from functools import wraps
 
-from shared.extra.Run_only_Thread import Run_only_Thread
-
+from shared.extra.run_only_thread import run_only_thread
+from shared.extra._exception import Terminated
 
 def timeout(time : float, action=None, *action_args, **action_kwargs):
     """
@@ -35,13 +35,13 @@ def timeout(time : float, action=None, *action_args, **action_kwargs):
             helper_queue = queue.Queue()
             lock = threading.Lock() # Prevent potential data race.
             
-            new_thread = Run_only_Thread(helper, helper_queue, func, *a, **ka)
+            new_thread = run_only_thread(helper, helper_queue, func, *a, **ka)
             new_thread.start()
             new_thread.join(time)
             
             if new_thread.is_running():
                 new_thread.terminate()
-                
+
                 if callable(action):
                     return action(*action_args, **action_kwargs) #type: ignore
                 

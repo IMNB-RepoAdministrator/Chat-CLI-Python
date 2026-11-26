@@ -1,83 +1,96 @@
 import socket
-
 import yaml
+import time
 
-from shared import get_path, sock_create
+import sys, pathlib
+sys.path.append(str(pathlib.Path().resolve())) # Resolve import
+
+from shared.config import file_path as get_path
+from shared.sock import create_socket as sock_create
 from shared.extra.timeout import timeout
+from shared.comm.response import response
+from shared.extra.timeout_receive import timeout_receive
 
-SHARED_CONFIG_FILE = get_path.get_shared_path()
-ASK_REQUEST = f"Who is Chat-CLI server? {SHARED_CONFIG_FILE['version']}".encode()
-SVRANS_REQUEST = f"I am Chat-CLI server. {SHARED_CONFIG_FILE['version']}".encode()
-CLI_ACK = f"Chat-CLI Client Acknowledge. {SHARED_CONFIG_FILE['version']}".encode()
-TIMEOUT = SHARED_CONFIG_FILE["timeout-length"]
+SHARED_CONFIG_PATH = get_path.get_shared_path()    
 
 class sv_broadcaster:
     """
     **Description**:
-        Instantiate a **Broadcaster** object and automatically bind itself to 0.0.0.0.
+        Instantiate a **Broadcaster** object and automatically bind itself to `broadcast-server-port`.
         This object contains common method that will be use for the server.
         
     **NOTE**: This is only for handling connection, not the entire application itself.
     """
         
-    def __init__(self, shared_cfg_path : str = SHARED_CONFIG_FILE):
+    def __init__(self, shared_cfg_path : str = SHARED_CONFIG_PATH):
         with open(shared_cfg_path, "r") as config_file:
             shared_config = yaml.safe_load(config_file)
     
-        self.broadcast_socket, self.broadcast_addr = sock_create.create_UDPsocket(
+        self.broadcast_socket, self.broadcast_property = sock_create.create_UDPsocket(
             (
-                "255.255.255.255", 
-                shared_config["broadcast-server-port"]
+                shared_config["broadcast-addr"], 
+                shared_config["broadcast-port"]
             )
         )
         
+        self.broadcast_socket.bind((self.broadcast_property.addr, self.broadcast_property.port))
+        
         self.broadcast_socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+        self.broadcast_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        
         self.size = shared_config["packet-size"]
+        self.TIMEOUT = shared_config["timeout-length"]        
+        self.REPEATING_RATE = shared_config["repeating-rate"]
         
 
     ## Private methods
-    @timeout(TIMEOUT, False)
-    def _synchronize(self, addr : socket._RetAddress):
+    
+    def _sv_synchronize(self, addr : socket._RetAddress):
         """
         **PRIVATE METHOD**
         
-        Initializing handshake and synchronize with client.
+        Initializing handshake and synchronize with client. If not possible, return None.
         """
-        
-        self.broadcast_socket.sendto(SVRANS_REQUEST, addr)
-        rep_msg = b""
-        
-        while rep_msg == b"":
-            packet = self.broadcast_socket.recvfrom(self.size)
-            addr = packet[1]
-            rep_msg = packet[0]
+                    
+        @timeout(self.TIMEOUT) # Because you can't pass self attribute from outside for some reason smh.
+        def decorated_sync():
+            nonlocal addr
             
-            if rep_msg == CLI_ACK:
-                break
-                
-            else:
+            while True:
                 rep_msg = b""
-
-        return True
+                
+                while rep_msg == b"":
+                    self.broadcast_socket.sendto(response("SVRANS_REQUEST"), addr)
+                    packet = timeout_receive(self.size, "UDP", self.broadcast_socket, self.REPEATING_RATE)
+                    
+                    if packet != None:                   
+                        rep_msg = packet[0]
+                        
+                        if rep_msg == response("CLI_ACK"):
+                            self.broadcast_socket.sendto(b"", addr)
+                            return True
+                        
+                        else:
+                            rep_msg = b""
+                            break
+                
+        return decorated_sync()
             
     ## Public methods
-    
-    def discover(self):
+
+    def broadcast_discover(self):
         """
-        Discover client from broadcast.
+        Discover client by broadcasting.
         """
         
         message = b""
         
         while message == b"":
             packet = self.broadcast_socket.recvfrom(self.size)
+            
             message = packet[0]
             addr = packet[1]
             
-            if message == ASK_REQUEST:
-                status = self._synchronize(addr)
-                
-                if status == True:
-                    return addr
-                
+            if message == response("ASK_REQUEST") and self._sv_synchronize(addr) != None:
+                return addr
             
