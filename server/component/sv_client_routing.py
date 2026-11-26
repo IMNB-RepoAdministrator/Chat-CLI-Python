@@ -1,4 +1,3 @@
-import socket
 
 
 class sv_client_routing:

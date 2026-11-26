@@ -1,6 +1,8 @@
-from .timeout import timeout
 import socket
 from typing import Literal
+
+from .timeout import timeout
+
 
 def timeout_receive(size : int, mode : Literal["UDP", "TCP"], socket : socket.socket, duration : float):
     """

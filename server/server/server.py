@@ -1,10 +1,10 @@
-import sys
 import pathlib
+import sys
 
 sys.path.append(str(pathlib.Path().absolute()) + "/server")
 
 from component.sv_broadcaster import sv_broadcaster
-from shared.extra.run_only_thread import run_only_thread
+
 
 class server:    
     """

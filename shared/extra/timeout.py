@@ -3,7 +3,7 @@ import threading
 from functools import wraps
 
 from shared.extra.run_only_thread import run_only_thread
-from shared.extra._exception import Terminated
+
 
 def timeout(time : float, action=None, *action_args, **action_kwargs):
     """

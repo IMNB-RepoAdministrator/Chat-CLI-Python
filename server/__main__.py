@@ -1,9 +1,13 @@
 # from server.server.server import server
-import sys, pathlib
-sys.path.append(str(pathlib.Path().resolve())) # Resolve import
+import pathlib
+import sys
 
-from shared.extra.run_only_thread import run_only_thread  
+sys.path.append(str(pathlib.Path.cwd())) # Resolve import
+
+from shared.extra.run_only_thread import run_only_thread
+
 from .component.sv_broadcaster import sv_broadcaster
+
 
 class server:    
     """

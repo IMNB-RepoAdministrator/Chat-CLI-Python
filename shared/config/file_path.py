@@ -1,8 +1,9 @@
 import pathlib
+
 import yaml
 
 SHARED_ABSOLUTE_PATH = "/".join(str(pathlib.Path(__file__).resolve()).split("/")[:-3])
-CURRENT_DIR = "/".join([SHARED_ABSOLUTE_PATH, "shared", "config"])
+CURRENT_DIR = f"{SHARED_ABSOLUTE_PATH}/shared/config"
 
 def get_shared_path():
     with open(f"{CURRENT_DIR}/file_path.yaml", "r") as yaml_file:
