@@ -6,11 +6,11 @@ Simple chat cli application with file sending application and bare minimum secur
 For server:
 
 ``` command:
-    python -m server
+python -m server
 ```
 
 For client:
 
 ``` command:
-    <TBD>
+python -m client
 ```
