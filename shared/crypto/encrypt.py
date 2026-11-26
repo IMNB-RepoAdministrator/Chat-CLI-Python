@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import os
 
 from cryptography.hazmat.primitives import hashes, serialization

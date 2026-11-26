@@ -1,15 +1,16 @@
+import pathlib
 import socket
+import sys
+
 import yaml
-import time
 
-import sys, pathlib
-sys.path.append(str(pathlib.Path().resolve())) # Resolve import
+sys.path.append(str(pathlib.Path.cwd())) # Resolve import
 
-from shared.config import file_path as get_path
-from shared.sock import create_socket as sock_create
-from shared.extra.timeout import timeout
 from shared.comm.response import response
+from shared.config import file_path as get_path
+from shared.extra.timeout import timeout
 from shared.extra.timeout_receive import timeout_receive
+from shared.sock import create_socket as sock_create
 
 SHARED_CONFIG_PATH = get_path.get_shared_path()    
 

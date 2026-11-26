@@ -1,6 +1,8 @@
-from ..config import file_path
 from typing import Literal
+
 import yaml
+
+from ..config import file_path
 
 SHARED_CONFIG_PATH = file_path.get_shared_path()    
 
