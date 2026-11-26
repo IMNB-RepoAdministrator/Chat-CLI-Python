@@ -1,6 +1,6 @@
+import random
 import socket
 import time
-import random
 
 HOST = "255.255.255.255"
 PORT = 28010
