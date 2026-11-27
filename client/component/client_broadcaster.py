@@ -1,9 +1,11 @@
+from __future__ import annotations
+
 import pathlib
 import socket
 import sys
 
 import yaml
-from __future__ import annotations
+
 sys.path.append(str(pathlib.Path.cwd()))  # Resolve import
 
 from shared.comm.response import response
